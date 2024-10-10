@@ -7,9 +7,18 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link" aria-current="page" href="/">Home</a>
-          <a class="nav-link" href="/listings">All listings</a>
-          <a class="nav-link" href="/listings/new">Add new listings</a>
-        </div>
+          <a class="nav-link" href="/listings">All Hotels</a>
+          <a class="nav-link" href="/listings/new">Add new Hotel</a>
+        </div> 
+        <div class="navbar-nav ms-auto">
+          <%if(!currUser){%>
+          <a class="nav-link" href="/login"><i class="fa-solid fa-circle-user mr-1" style="font-size:30px;"></i></a>
+          <% } %>
+          <%if(currUser){%>
+          <a class="nav-link" href="/logout">Logout</a>
+          <% } %>
+        </div> 
       </div>
     </div>
   </nav>
+

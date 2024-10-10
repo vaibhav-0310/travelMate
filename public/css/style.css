@@ -113,7 +113,6 @@ footer{
     display: flex;
     align-items: space-between;
 }
-
-.show-card{
-    
+.show1{
+    margin-bottom: 20px !important;
 }
