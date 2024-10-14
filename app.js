@@ -58,6 +58,7 @@ app.use(flash());
         console.log(err);
     });
 
+    //local variables
     app.use((req,res,next)=>{
         res.locals.success=req.flash("success");
         res.locals.error=req.flash("error");
@@ -65,8 +66,6 @@ app.use(flash());
         next();
     });
 
-    // login route
-    
     //listing route
     app.use("/listings",lisitingsrouter);
     //review route
@@ -93,5 +92,5 @@ app.use(flash());
     //error handling midddleware
     app.use((err,req,res,next)=>{
         let{statusCode=500,message="Something went wrong"}=err;
-        res.status(statusCode).render("listings/error.ejs",{err});
+        res.status(statusCode).render("./listings/error.ejs",{err});
     });

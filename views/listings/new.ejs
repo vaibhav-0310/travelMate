@@ -5,9 +5,9 @@
         <div class="col-8 offset-2">
     <h3>Add a New Hotel</h3>
     
-    <form method="post" action="/listings/new" novalidate class="needs-validation">
+    <form method="post" action="/listings/new" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3"><label for="title" class="form-label">Title</label>
-            <input name="l[title]" placeholder="enter title" class="form-control" required>
+            <input name="l[title]" placeholder="enter title" class="form-control" type="text" required>
             <div class="invalid-feedback">Enter a correct Title</div>
         </div>
         <div class="mb-3">
@@ -16,23 +16,23 @@
             <div class="invalid-feedback">Enter a correct Description</div>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">image</label>
-            <input name="l[image]" placeholder="enter image url/link" class="form-control">
+            <label for="image" class="form-label">Upload Image </label>
+            <input name="l[image]" type="file" class="form-control">
         </div>
         <div class="row">
         <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Price</label>
-            <input name="l[price]" placeholder="enter price"  class="form-control" required>
+            <input name="l[price]" placeholder="enter price"  class="form-control" type="text" required>
             <div class="invalid-feedback">Enter a correct Price</div>
         </div>
         <div class="mb-3 col-md-8">
             <label for="country" class="form-label">Country</label>
-            <input name="l[country]" placeholder="enter country" class="form-control" required>
+            <input name="l[country]" placeholder="enter country" class="form-control" type="text" required>
             <div class="invalid-feedback">Enter a correct Country name</div>
         </div></div>
         <div class="mb-3">
             <label for="location" class="form-label">Location</label>
-            <input name="l[location]" placeholder="enter location" class="form-control" required>
+            <input name="l[location]" placeholder="enter location" class="form-control" type="text" required>
             <div class="invalid-feedback">Enter a correct Location</div>
         </div>
         <br>
