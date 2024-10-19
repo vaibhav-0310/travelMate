@@ -1,3 +1,6 @@
+    if(process.env.NODE_ENV != "production"){
+        require('dotenv').config();
+    }
     const express = require("express");
     const app=express();
     const mongoose=require("mongoose");
@@ -6,6 +9,7 @@
     const ejsmate=require("ejs-mate");
     const ExpressError=require("./utils/ExpressError.js");
     const session=require("express-session");
+    const MongoStore=require("connect-mongo");
     const cookieParser=require("cookie-parser");
     const flash=require("connect-flash");
     const passport=require("passport");
@@ -16,6 +20,7 @@
     const reviewrouter=require("./routes/review.js");
     const userrouter=require("./routes/user.js"); 
 
+    
     //middleware
     app.engine("ejs",ejsmate);
     app.use(cookieParser());
@@ -24,17 +29,32 @@
     app.set("views",path.join(__dirname,"views"));
     app.use(express.urlencoded({extended:true}));
     app.use(express.static(path.join(__dirname,"/public")));
+    
+    const dburl=process.env.ATLASDB_URL;
+    const store=MongoStore.create({
+        mongoUrl:dburl,
+        crypto:{
+            secret:process.env.SECRET
+        },
+        touchAfter:24*3600
+    });
+    
+    store.on("error",(err)=>{
+        console.log("Error in Mongo Session Store",err);
+    });
+
+    
     //creating session
-    app.use(session({secret:"e2eef800fdd479b14d8766939232fb50",
-        resave:false,
-        saveUninitialized:true,
-        cookie:{
-            expires:Date.now()+7*24*24*60*60*1000,
-            maxAge:7*24*24*60*60*1000,
-            httpOnly:true,
-        }
-}));
-app.use(flash());
+    app.use(session({store,
+        secret: process.env.SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true,
+        }}));
+    app.use(flash());
 
     //implementing passport
     app.use(passport.initialize());
@@ -44,11 +64,12 @@ app.use(flash());
     passport.serializeUser(User.serializeUser());
     passport.deserializeUser(User.deserializeUser());
 
-    
+      
 
     //database connection
+    
     async function main(){
-        await mongoose.connect("mongodb://127.0.0.1:27017/travelmate");
+        await mongoose.connect(dburl);
     };
     main()
     .then(()=>{
@@ -57,14 +78,15 @@ app.use(flash());
     .catch((err)=>{
         console.log(err);
     });
-
-    //local variables
-    app.use((req,res,next)=>{
-        res.locals.success=req.flash("success");
-        res.locals.error=req.flash("error");
-        res.locals.currUser=req.user;
-        next();
-    });
+ 
+  //local variables
+  app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    res.locals.currUser=req.user;
+    next();
+});
+    
 
     //listing route
     app.use("/listings",lisitingsrouter);
@@ -73,6 +95,7 @@ app.use(flash());
     //user route
     app.use("/",userrouter);
 
+     
     app.get("/",(req,res)=>{
         res.redirect("/listings");
     });

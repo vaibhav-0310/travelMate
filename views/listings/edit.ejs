@@ -1,10 +1,11 @@
 <%layout("/layouts/boilerplate.ejs")%>
+
 <body>
     <br>
     <div class="row">
         <div class="col-8 offset-2">
     <h3>Edit your Listing</h3>
-    <form method="post" action="/listings/<%= list._id %>?_method=PUT"  novalidate class="needs-validation">
+    <form method="post" action="/listings/<%= list._id %>?_method=PUT"  novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3"><label for="title" class="form-label">Title</label>
         <input name="l[title]" value="<%=list.title%>" class="form-control" required>
         <div class="invalid-feedback">Enter a correct Title</div>
@@ -13,8 +14,12 @@
             <textarea name="l[description]" class="form-control" required><%=list.description%></textarea>
             <div class="invalid-feedback">Enter a correct Description</div>
         </div>
-        <div class="mb-3"><label for="image" class="form-label">Image URL</label>
-            <input name="l[image]" value="<%=list.image%>" class="form-control" required>
+        <div class="mb-3">
+            Original listing image<br>
+            <img   src="<%= o %>">
+        </div>
+        <div class="mb-3"><label for="image" class="form-label">Upload Image</label>
+            <input name="l[image]" value="<%=list.image.url%>" type="file" class="form-control" >
         </div>
         <div class="row">
         <div class="mb-3 col-md-4"><label for="price" class="form-label">Price</label>

@@ -116,3 +116,77 @@ footer{
 .show1{
     margin-bottom: 20px !important;
 }
+
+/*map*/
+
+#map{
+    height:400px;
+    width:80vh;
+}
+#menu {
+    background: transparent;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#filters{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.filter{
+    text-align: center;
+    margin-right: 2rem;
+    opacity: 0.8;
+    
+}
+.filter p{
+    font-size: 0.85rem;
+}
+.filter:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.tax-info{
+   display: none;
+}
+.tax-toggle{
+    border: 1px solid gray;
+    border-radius: 1rem;
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+
+/* media */
+
+/* mobile phone */
+@media (max-width: 576px) {
+    #map{
+        height: 200px !important;
+        width:200px !important;
+    }
+    #menu{
+        width: 100px;
+    }
+    .add-btn{
+       width: 30px;
+       font-size: smaller !important;
+       padding: 0px;
+    }
+}
+
+@media (min-width:577px) and (max-width:868px){
+    #map{
+        height: 300px;
+        width: 300px;
+    }
+}
+@media (min-width:869px) and (max-width:1003px) {
+    #map{
+        width:400px
+    }
+}
