@@ -30,7 +30,7 @@
     app.use(express.urlencoded({extended:true}));
     app.use(express.static(path.join(__dirname,"/public")));
     
-    const dburl=process.env.ATLASDB_URL;
+    const dburl="mongodb://127.0.0.1:27017/travelmate";
     const store=MongoStore.create({
         mongoUrl:dburl,
         crypto:{
