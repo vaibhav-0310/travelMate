@@ -13,14 +13,13 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(MONGO_URL,{useNewUrlParser: true,
-    useUnifiedTopology: true,});
+  await mongoose.connect("mongodb://127.0.0.1/travelmate");
 }
 
 const initDB = async () => {
   await listings.deleteMany({});
   initData.data=initData.data.map((obj)=>({...obj,owner:"6707c289a686d6ab26197cd5"}));
-  await listings.save(initData.data);
+  await listings.insertMany(initData.data);
   console.log("data was initialized");
 };
 
