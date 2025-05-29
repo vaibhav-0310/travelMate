@@ -12,14 +12,14 @@
         <div class="card col-6 offset-3 show1">
             <img src="<%= L.image.url %>" class="card-img-top show-img" alt="listing_image">
             <div class="card-body">
-                <p class="card-text"><i>Owned By <%= L.owner.username %></i></p>
+                <p class="card-text"><i>Owned By <%= L.owner ? L.owner.username : 'Unknown Owner' %></i></p>
                 <p class="card-text"><%= L.description %></p>
                 <p class="card-text">&#8377;<%= L.price.toLocaleString("en-IN") %></p>
                 <p class="card-text"><%= L.location %></p>
                 <p class="card-text"><%= L.country %></p>
             </div>
         </div>
-        <% if (currUser && L.owner._id.equals(currUser._id)) { %>
+        <% if (currUser && L.owner && L.owner._id.equals(currUser._id)) { %>
         <div class="btns">
             <a href="/listings/<%= L._id %>/edit" class="btn add-btn btn-dark col-1 offset-3">Edit</a>
             <form method="post" action="/listings/<%= L._id %>?_method=DELETE">
@@ -65,13 +65,13 @@
                 <div class="card col-6">
                     <div class="card text-bg-light mb-1" style="padding: 0px 15px 15px 15px;">
                         <div class="card-body">
-                            <p class="card-text"><b> @<%= review.author.username%></b> </p>
+                            <p class="card-text"><b> @<%= review.author && review.author.username ? review.author.username : 'Anonymous' %></b> </p>
                           <p class="starability-result card-text" data-rating="<%=review.rating%>">
                            
                           </p>
                           <p class="card-text"><%= review.comment%> </p>
                         </div>
-                        <% if(currUser && review.author._id.equals(currUser._id)){ %>
+                        <% if(currUser && review.author && review.author._id.equals(currUser._id)){ %>
                         <form class="mt-3" method="post" action="/listings/<%= L._id %>/review/<%= review._id %>?_method=delete">
                             <button class="btn btn-sm btn-dark">delete</button>
                         </form>
