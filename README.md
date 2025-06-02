@@ -47,7 +47,7 @@
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/travelmate.git
+   git clone https://github.com/vaibhav-0310/travelmate.git
    cd travelmate
    ```
 
