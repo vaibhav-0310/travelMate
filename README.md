@@ -77,19 +77,16 @@
 
 ---
 
-```
-
----
-
-## 💪 Contribution
-
-Pull requests are welcome! Feel free to fork the repository and submit changes.
-
----
 
 
-## 🌟 Acknowledgements
+## ScreenShots
+![image](https://github.com/user-attachments/assets/fd447b1f-b94c-42bc-8cb2-6e13af7017f5)
 
-* [Mapbox](https://www.mapbox.com/) for map and geocoding services
-* [Multer](https://github.com/expressjs/multer) for file handling
-* [Bootstrap](https://getbootstrap.com/) for responsive design
+![image](https://github.com/user-attachments/assets/58958409-4142-4174-ab3d-7b17add098d1)
+
+![image](https://github.com/user-attachments/assets/069ab35e-7f4a-45a3-9ded-4de5b68e706e)
+
+![image](https://github.com/user-attachments/assets/f299ba8f-ce33-44a1-be25-500dd265cf36)
+
+
+
