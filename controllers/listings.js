@@ -70,3 +70,15 @@ module.exports.delete=async(req,res)=>{
     res.redirect("/listings");
 
 };
+
+module.exports.userListings=async(req,res)=>{
+    let category=req.params.category;
+    const li=await listing.find({category});
+    res.render("listings/index.ejs",{li});
+};
+
+module.exports.search=async(req,res)=>{
+    const {query} = req.body;
+    const li = await listing.find({$text: {$search: query}});
+    res.render("listings/index.ejs",{li});
+};

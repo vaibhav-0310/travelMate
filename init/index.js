@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const initData = require("./data.js");
 const listings = require("../models/listing.js");
 
-const MONGO_URL = `${process.env.ATLASDB_URL}/test`;
-
 main()
   .then(() => {
     console.log("connected to DB");
@@ -20,7 +18,7 @@ const initDB = async () => {
   await listings.deleteMany({});
   initData.data=initData.data.map((obj)=>({...obj,owner:"6707c289a686d6ab26197cd5"}));
   await listings.insertMany(initData.data);
-  console.log("data was initialized");
+  console.log("data was initialized" );
 };
 
 initDB();

@@ -32,3 +32,24 @@
         }
       }
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const filters = document.querySelectorAll('.filter');
+    const taxToggle = document.getElementById('flexSwitchCheckReverse');
+    
+    // Add click event listeners to filters
+    filters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Remove active class from all filters
+            filters.forEach(f => f.classList.remove('active'));
+            
+            // Add active class to clicked filter
+            this.classList.add('active');
+            
+            // Navigate to filtered listings
+            window.location.href = `/listings/category/${category}`;
+          });
+      });
+    });

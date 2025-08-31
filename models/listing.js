@@ -34,6 +34,17 @@ const listingSchema = new Schema({
             required:true,
         },
     },
+    category:{
+        type:String,
+        required:true,
+    }
+});
+listingSchema.index({
+    title: 'text',
+    description: 'text',
+    location: 'text',
+    country: 'text',
+    category: 'text'
 });
 
 listingSchema.post("findOneAndDelete",async(listing)=>{

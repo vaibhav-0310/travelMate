@@ -2,75 +2,79 @@
 
 <body>
   <br>
+  <div class="px-5">
      <div id="filters">
-      <div class="filter">
+      <div class="filter" data-category="Trending">
         <div><i class="fa-solid fa-fire"></i></div>
         <p>Trending</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Rooms">
         <div><i class="fa-solid fa-bed"></i></div>
         <p>Rooms</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Iconic Cities">
         <div><i class="fa-solid fa-mountain-city"></i></div>
         <p>Iconic Cities</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Mountains">
         <div><i class="fa-solid fa-mountain"></i></div>
         <p>Mountains</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Castles">
         <div><i class="fa-brands fa-fort-awesome"></i></div>
         <p>Castles</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Camping">
         <div><i class="fa-solid fa-campground"></i></div>
         <p>Camping</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Pools">
         <div><i class="fa-solid fa-person-swimming"></i></div>
         <p>Pools</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Farms">
         <div><i class="fa-solid fa-cow"></i></div>
         <p>Farms</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Arctic">
         <div><i class="fa-solid fa-snowman"></i></div>
         <p>Arctic</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Dome">
         <div><i class="fa-solid fa-igloo"></i></div>
         <p>Dome</p>
       </div>
-      <div class="filter">
+      <div class="filter" data-category="Boathouse">
         <div><i class="fa-solid fa-ship"></i></div>
         <p>Boathouse</p>
       </div> 
       
       <div class="tax-toggle">
-      <div class="form-check form-switch form-check-reverse">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse">
-        <label class="form-check-label" for="flexSwitchCheckReverse">Display Total after taxes</label>
+        <div class="form-check form-switch form-check-reverse">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse">
+          <label class="form-check-label" for="flexSwitchCheckReverse">Display Total after taxes</label>
+        </div>
       </div>
      </div>
 
-     </div>
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3" >
-    <% for(let list of li) {%>
-      <a href="/listings/<%= list._id %>" class="listing-link">
-    <div class="card col">
-        <img src="<%= list.image.url%>" class="card-img-top" alt="listing_image" style="width: 20rem; height: 20rem;">
-        <div class="card-img-overlay"></div>
-        <div class="card-body">
-          <p class="card-text">
-           <b>  <%= list.title %><br></b>
-            &#8377;<%= list.price.toLocaleString("en-IN") %> /night
-            <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
-        </div>
-      </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3" id="listings-container">
+      <% for(let list of li) {%>
+        <a href="/listings/<%= list._id %>" class="listing-link">
+          <div class="card col" data-category="<%= list.category %>">
+              <img src="<%= list.image.url%>" class="card-img-top" alt="listing_image" style="width: 20rem; height: 20rem;">
+              <div class="card-img-overlay"></div>
+              <div class="card-body">
+                <p class="card-text">
+                 <b><%= list.title %><br></b>
+                  &#8377;<span class="base-price"><%= list.price.toLocaleString("en-IN") %></span> /night
+                  <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+                </p>
+              </div>
+            </div>
+        </a>
       <% } %>
-      </a>
+    </div>
     </div>
 </body>
+
 <script src="/script/script.js"></script>
